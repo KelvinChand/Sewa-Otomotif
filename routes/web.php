@@ -13,5 +13,5 @@ Route::get('/sewa/data',[SewaController::class,'getData'])->name('dashboard.data
 Route::get('/sewa/{id_sewas}',[SewaController::class,'show'])->name('dashboard.show');
 Route::post('/sewa',[SewaController::class,'store'])->name('dashboard.store');
 Route::put('/sewa/{$id_sewas}',[SewaController::class,'update'])->name('dashboard.update');
-Route::delete('/sewa/{$id_sewas}',[SewaController::class,'delete'])->name('dashboard.delete');
+Route::delete('/sewa/{$id_sewas}',[SewaController::class,'destroy'])->name('dashboard.destroy');
 

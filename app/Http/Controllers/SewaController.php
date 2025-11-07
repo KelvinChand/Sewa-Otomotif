@@ -29,6 +29,7 @@ class SewaController extends Controller
             'nama_customer' => 'required|string',
             'id_kendaraans' => 'required',
             'tanggal_mulai_sewa'=> 'required',
+            'tanggal_berakhir_sewa'=> 'date',
             'harga_sewa' => 'required|numeric',
         ]);
 
@@ -38,7 +39,17 @@ class SewaController extends Controller
 
     public function show($id)
     {
-        return response()->json(Sewa::findOrFail($id));
+        $sewa = Sewa::with('kendaraan')->findOrFail($id);
+
+        return response()->json([
+            'id_sewas' => $sewa->id_sewas,
+            'nama_customer' => $sewa->nama_customer,
+            'id_kendaraans' => $sewa->id_kendaraans,
+            'tanggal_mulai_sewa' => $sewa->tanggal_mulai_sewa,
+            'tanggal_berakhir_sewa' => $sewa->tanggal_berakhir_sewa,
+            'harga_sewa' => $sewa->harga_sewa,
+            'nomor_kendaraan' => $sewa->kendaraan ? $sewa->kendaraan->nomor_kendaraan : '-',
+        ]);
     }
 
     public function update(Request $request, $id){
@@ -48,9 +59,9 @@ class SewaController extends Controller
         return response()->json(['success'=>'true']);
     }
 
-    public function delete($id) {
-
+    public function destroy($id)
+    {
         Sewa::destroy($id);
-        return response()->json(['success'=>'true']);
+        return response()->json(['success' => true]);
     }
 }

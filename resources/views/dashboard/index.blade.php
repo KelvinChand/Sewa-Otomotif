@@ -122,6 +122,7 @@
                 $.get('/sewa/'+ id, function(res){
                     $('#id_sewas').val(res.id_sewas);
                     $('#nama_customer').val(res.nama_customer);
+                    $('#id_kendaraans').val(res.id_kendaraans)
                     $('#tanggal_mulai_sewa').val(res.tanggal_mulai_sewa);
                     $('#tanggal_berakhir_sewa').val(res.tanggal_berakhir_sewa);
                     $('#harga_sewa').val(res.harga_sewa);
